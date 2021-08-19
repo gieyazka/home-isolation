@@ -37,7 +37,7 @@ export default function Landing(): JSX.Element {
          </div>
         </div>
         <div className={imgsize} style={{backgroundColor : '#ECECED'}}>
-          <div className="flex flex-wrap justify-around pt-4 ">
+          <div className="flex flex-wrap justify-around ">
             <Link href="/location">
               <div
                 style={{ width: "30vw", height: "18vh" ,backgroundColor : '#F6F6F6'}}
