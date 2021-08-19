@@ -47,10 +47,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=0, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content={ statusBarStyle } />
-        <link rel="apple-touch-startup-image" sizes="512x512" href="/assest/covid_home_isolation-color.svg" />
-        <link rel="apple-touch-startup-image" sizes="256x256" href="/assest/covid_home_isolation-color.svg" />
-        <link rel="apple-touch-icon" sizes="512x512" href="/assest/covid_home_isolation-color.svg" />
-        <link rel="apple-touch-icon" sizes="256x256" href="/assest/covid_home_isolation-color.svg" />
+        <link rel="apple-touch-startup-image" sizes="512x512" href="/logo512.png" />
+        <link rel="apple-touch-startup-image" sizes="256x256" href="/logo256.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/logo512.png" />
+        <link rel="apple-touch-icon" sizes="256x256" href="/logo256.png" />
         <link rel="manifest" href="/manifest.json" />
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"></link>
       </Head>
