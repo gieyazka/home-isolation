@@ -36,7 +36,7 @@ export default function Landing(): JSX.Element {
          <br /> <text className=" text-2xl  mt-auto mb-auto">SOS Center</text>
          </div>
         </div>
-        <div className="  h-2/4" style={{backgroundColor : '#ECECED'}}>
+        <div className="  h-2/4" style={{backgroundColor : '#ECECED',marginTop : '12vh'}}>
           <div className="flex flex-wrap justify-around pt-4 ">
             <Link href="/location">
               <div
