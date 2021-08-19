@@ -31,7 +31,7 @@
 }
 .componet{
   display:  flex;
-  height: calc(65% - var(--header-navigation-height));
+  height: calc(65% - var(--header-height));
 }
 .childcom {
   height: calc(100vh - var(--header-height));
