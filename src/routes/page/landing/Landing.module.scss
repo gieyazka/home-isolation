@@ -19,12 +19,12 @@
   }
 }
 .sizetop{
-  height: calc(50% - var(--header-height));
+  height: calc(40% - var(--header-height));
   
 }
 .imgsize{
   margin-top:  var(--header-height);
-  height: calc(50% - var(--header-height));
+  height: calc(40% - var(--header-height));
 }
 .landing {
   --primary-text-color: #f2f2f7;
