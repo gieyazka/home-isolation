@@ -18,6 +18,10 @@
     font-size:   20vw !important;;
   }
 }
+.imgsize{
+  margin-top:  var(--header-height);
+  height: calc(50% - var(--header-height));
+}
 .landing {
   --primary-text-color: #f2f2f7;
   --secondary-text-color: #f3f3f7;

@@ -9,6 +9,7 @@ const {
   landingText,
   landingImage,
   landingNavigationWrapper,
+  imgsize,
   iconMenu
 } = styles;
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -28,7 +29,7 @@ export default function Landing(): JSX.Element {
           // style={{ paddingTop: "25vh" }}
           className="text-center h-2/4 w-screen "
         >
-          {/* <img src='/assets/covid.jpg' className=' opacity-40 absolute h-2/4 w-full z-0 object-cover'/> */}
+          <img src='/assets/covid.jpg' className={`${imgsize} opacity-40 absolute  w-full z-0 object-cover`} />
           <div className=' text-black z-10 absolute translate-x-2/4 translate-y-2/4 w-screen text-center' style={{top : '25vh'}}>
           <text className=" text-6xl text-  mt-auto mb-auto">Covid - 19</text>
          <br /> <text className=" text-2xl  mt-auto mb-auto">SOS Center</text>
