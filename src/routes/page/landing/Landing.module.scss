@@ -19,7 +19,7 @@
   }
 }
 .sizetop{
-  height: calc(50% + var(--header-height));
+  height: calc(50% - var(--header-height));
   
 }
 .imgsize{
