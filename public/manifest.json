@@ -1,6 +1,6 @@
 {
-    "short_name": "PWA Boilerplate",
-    "name": "PWA Boilerplate",
+    "short_name": "Covid Home Isolation",
+    "name": "Covid Home Isolation",
     "lang": "en-US",
     "start_url": "/",
     "display": "standalone",
@@ -9,19 +9,19 @@
     "background_color": "#000",
     "icons": [
         {
-            "src": "favicon.ico",
+            "src": "covid_home_isolation-color.svg",
             "sizes": "64x64 32x32 24x24 16x16",
-            "type": "image/x-icon"
+            "type": "image/svg"
         },
         {
-            "src": "logo256.png",
-            "type": "image/png",
+            "src": "covid_home_isolation-color.svg",
+            "type": "image/svg",
             "sizes": "256x256",
             "purpose": "maskable any"
         },
         {
-            "src": "logo512.png",
-            "type": "image/png",
+            "src": "covid_home_isolation-color.svg",
+            "type": "image/svg",
             "sizes": "512x512",
             "purpose": "maskable any"
         }

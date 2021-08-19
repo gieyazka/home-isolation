@@ -4,7 +4,8 @@ import Items from 'components/header/items';
 import Logo from 'components/header/logo';
 import ThemeToggler from 'components/header/themeToggler';
 import styles from './Header.module.scss';
-
+import { signIn, signOut, useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 const OFFLINE = 'offline';
 
 const {
@@ -14,9 +15,8 @@ const {
   offlineIcon
 } = styles;
 
-const handleNetworkChange = (): void => {
+const handleNetworkChange = ()=> {
   const { documentElement: { classList } } = document;
-
   if (!navigator.onLine) {
     classList.add(OFFLINE);
 
@@ -27,8 +27,14 @@ const handleNetworkChange = (): void => {
 };
 
 export default memo(
-  function Header(): JSX.Element {
+  function Header() {
+  const [session, loading] = useSession();
+
     useEffect(() => {
+
+
+     
+
       if (typeof window !== undefined) {
         handleNetworkChange();
 
@@ -44,7 +50,7 @@ export default memo(
 
     return (
       <>
-        <div className={ offline }>
+        <div  className={ offline }>
           <Icon
             asset="Cloud-Slash"
             className={ offlineIcon }
@@ -54,8 +60,16 @@ export default memo(
         <header className={ header }>
           <nav>
             <div className={ headerControls }>
-              <Logo />
-              <ThemeToggler />
+              <div style={{fontFamily : 'Bai jamjuree'}}  className='flex flex-col items-center mt-1'>
+              <img className=' rounded-full h-11 w-11 '      src={session?.user?.image || ""} />
+              <div className='mt-1 text-white'>{session?.user?.name}</div>
+              </div>
+              <div className='flex flex-row justify-end items-end '>
+             {/* <Link href="/"> */}
+      <img className='w-2/3' src="/assets/logo.png" />
+      {/* </Link> */}
+              {/* <ThemeToggler /> */}
+            </div>
             </div>
             <Items />
           </nav>

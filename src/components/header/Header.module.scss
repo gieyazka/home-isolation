@@ -53,11 +53,12 @@
 
   &Controls {
     align-items: center;
+    
     display: flex;
     height: 100%;
 
     @include media.mobile {
-      justify-content: center;
+      justify-content: space-between;
     }
   }
 }

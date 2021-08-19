@@ -3,14 +3,21 @@
 @use 'styles/variables/theme';
 
 .wrapper {
-  background-color: #e3879e;
+  background-color: rgba(26,156,166,255)
+  ;
   padding: var(--header-height) 0 0;
 
   @include theme.dark-mode {
-    background-color: #2e3191;
+    background-color: rgba(26,156,166,255);
   }
 }
-
+.iconMenu { 
+  color : rgba(107, 114, 128);
+  font-size:   8vw !important;
+  @include media.mobile {
+    font-size:   20vw !important;;
+  }
+}
 .landing {
   --primary-text-color: #f2f2f7;
   --secondary-text-color: #f3f3f7;
@@ -31,7 +38,6 @@
     margin: 0 auto;
     max-width: 650px;
     text-align: center;
-
     h1,
     p {
       color: var(--primary-text-color);

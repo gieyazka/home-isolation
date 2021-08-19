@@ -12,14 +12,15 @@ interface Schema {
         description: string
     }
 }
-
 const pages = _pages as Pages;
 const schema = _schema as Schema;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse): void {
   const { query } = req;
   const id = query.id as string;
-
+  
+  console.log(query);
+  
   if (!(id in schema)) {
     res.status(404);
   }

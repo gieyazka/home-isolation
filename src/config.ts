@@ -5,7 +5,7 @@
  * changing these values will not change any css.
  */
 export const theme = {
-  light: '#fff',
+  light: 'rgba(26,156,166,255)',
   dark: '#2c2c2c'
 };
 

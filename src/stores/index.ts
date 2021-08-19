@@ -11,6 +11,7 @@ import { user } from 'stores/user';
 import { notifications } from 'stores/notifications';
 import { pages } from 'stores/pages';
 
+
 const reducers = combineReducers({
   user,
   notifications,

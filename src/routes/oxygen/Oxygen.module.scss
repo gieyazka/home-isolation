@@ -1,0 +1,105 @@
+@use 'styles/variables/media';
+@use 'styles/variables/button';
+@use 'styles/variables/theme';
+
+.wrapper {
+  background-color: rgba(26,156,166,255)
+  ;
+  padding: calc(var(--header-height)) 0 0;
+
+  @include theme.dark-mode {
+    background-color: rgba(26,156,166,255);
+  }
+}
+.iconMenu { 
+  color : rgba(107, 114, 128);
+  font-size:   8vw !important;
+  @include media.mobile {
+    font-size:   20vw !important;;
+  }
+}
+.center{
+  display: flex;
+  // height: calc(100% - var(--header-navigation-height));
+  // padding-top: 8px;
+  // padding-bottom: 8px;
+  padding : 16px 24px 16px 24px;
+  background-color: #F6F6F6;
+  width: 90%;
+  border-radius: 12px;
+  
+}
+.componet{
+  display:  flex;
+  height: calc(70% - var(--header-navigation-height) - calc(var(--header-items-height) + var(--content-padding)));
+}
+.childcom {
+  height: calc(100vh - var(--header-height));
+}
+.landing {
+  --primary-text-color: #f2f2f7;
+  --secondary-text-color: #f3f3f7;
+
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+  margin: 0 auto;
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
+
+  @include media.mobile {
+    grid-template-columns: auto;
+  }
+
+  &Text {
+    margin: 0 auto;
+    max-width: 550px;
+    text-align: center;
+    h1,
+    p {
+      color: var(--primary-text-color);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  &NavigationWrapper {
+    display: block;
+    margin: 1rem auto 0;
+    text-align: center;
+
+    @include media.mobile {
+      grid-row: 3;
+    }
+
+    a {
+      --button-font-weight: 600;
+      --button-background: #000;
+      --button-hover: #000;
+
+      @include button.default;
+    }
+
+    p {
+      color: var(--secondary-text-color);
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  &Image {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+
+    @include media.after-mobile {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+  }
+}

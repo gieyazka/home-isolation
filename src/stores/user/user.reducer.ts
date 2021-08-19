@@ -1,12 +1,17 @@
+import image from 'components/image';
 import { User, UserActions, UPDATE_USER } from './user.actions';
 
 type UserState = User;
 
 const initialState: UserState = {
-  name: '',
-  avatar_url: '',
-  bio: '',
-  followers: null
+  
+  username : "",
+  company: "",
+  emp_id : "",
+  email : "",
+  isLoggin : false,
+  image : ""
+
 };
 
 export default (
@@ -17,22 +22,19 @@ export default (
   case UPDATE_USER: {
     const {
       user: {
-        name,
-        avatar_url,
-        bio,
-        followers
+        username,company,emp_id,isLoggin,email,image
+  
       }
     } = action;
 
     return {
-      name,
-      avatar_url,
-      bio,
-      followers
+      username,company,emp_id,email,isLoggin,image
+    
     };
   }
 
   default:
+    
     return state;
   }
 };

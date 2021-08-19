@@ -16,7 +16,7 @@ const {
   sidebarPagesActive
 } = styles;
 
-export default function Sidebar(): JSX.Element {
+export default function Sidebar() {
   const {
     name,
     avatar_url,

@@ -1,11 +1,14 @@
-import React from 'react';
-import Head from 'next/head';
-import Image from 'components/image';
-import Icon from 'components/icon';
-import Placeholder from 'components/placeholder';
-import { useUser } from 'hooks/user';
-import styles from './Profile.module.scss';
-
+import React from "react";
+import Head from "next/head";
+import Image from "components/image";
+import Icon from "components/icon";
+import Placeholder from "components/placeholder";
+import { useUser } from "hooks/user";
+import styles from "./Profile.module.scss";
+import { isExternalModuleNameRelative } from "typescript";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { type } from "os";
+import { getSession } from "next-auth/client";
 const {
   profile,
   profileMain,
@@ -13,63 +16,76 @@ const {
   profileContent,
   followersIcon,
   followersPlaceholder,
-  about
+  about,
 } = styles;
+interface Isession {
+  name: string;
+  image: string;
+  email: string;
+}
+export interface ISubmitResult {
+  success: boolean;
+  message: string;
+}
 
 export default function Profile(): JSX.Element {
-  const {
-    name,
-    bio,
-    avatar_url,
-    followers
-  } = useUser();
+  const { username, company, emp_id, email, isLoggin, image } = useUser();
+  const [session, loading] = useSession();
+  const [state, setState] = React.useState<Isession>();
+  console.log();
 
+  React.useEffect(() => {
+    // if (loading === true) {
+      setState({
+        name:' string',
+        image:' string',
+        email:' string'
+      });
+    // }
+  }, []);
+  // console.log(state);
+  if(!loading){
   return (
     <>
       <Head>
         <title>Profile</title>
         <meta name="robots" content="noindex" />
       </Head>
-      <main className={ profile }>
-        <div className={ profileMain }>
-          <Image
-            isPlaceholder={ !avatar_url }
-            src={ avatar_url }
-            className={ profilePicture }
+      <main className={profile}>
+        <div className={profileMain}>
+          <img
+            // isPlaceholder={!image}
+            src={session?.user?.image || ""}
+            className={profilePicture}
           />
-          <div className={ profileContent }>
+          {!session && (
+            <>
+              Not signed in <br />
+              <button onClick={() => signIn()}>Sign in</button>
+            </>
+          )}
+          {session && (
+            <>
+              <button onClick={() => signOut()}>Sign out</button>
+            </>
+          )}
+          {session?.user?.image}
+          <div className={profileContent}>
             <h1>
-              <Placeholder content={ name } length="short" />
+              sadsadsadasd
+              <Placeholder content={username} length="short" />
             </h1>
-            <p>
-              <Placeholder content={ bio } length="long" />
-            </p>
-            <h3>
-              <Icon
-                asset="People"
-                className={ followersIcon }
-              />
-              {
-                followers ?? <span className={ followersPlaceholder } />
-              } Followers
-            </h3>
           </div>
         </div>
-        <div className={ about }>
+        <div className={about}>
           <h2>About</h2>
-          <p>
-                        Aliquam aliquet tempus metus et varius.
-                        Etiam convallis nunc at magna venenatis, vitae egestas nibh accumsan.
-                        Nam auctor neque eget odio pretium, non lobortis sem condimentum.
-                        Vestibulum tempus risus vel est tristique, sed malesuada leo facilisis.
-                        Etiam sagittis leo eget augue ullamcorper sagittis.
-                        Fusce efficitur convallis turpis, sed faucibus diam lobortis ac.
-                        Morbi tincidunt purus tincidunt, maximus est vitae, semper erat.
-                        Pellentesque dictum in nunc eu porttitor.
-                        Integer vitae justo sit amet metus malesuada eleifend.
-          </p>
+          <p>asdsadsadsadsad</p>
         </div>
       </main>
     </>
   );
+}else{
+  return <>
+  test</>
+}
 }

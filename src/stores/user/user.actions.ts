@@ -1,10 +1,14 @@
 export const UPDATE_USER = 'UPDATE_USER';
 
 export interface User {
-    name: string,
-    avatar_url: string,
-    bio: string,
-    followers: number | null
+  username: string,
+  company: string,
+  emp_id: string,
+  email:string,
+    isLoggin : boolean
+    image : string 
+    
+
 }
 
 export interface UpdateUserAction {

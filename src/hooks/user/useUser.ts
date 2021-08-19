@@ -8,7 +8,7 @@ const useUser = (): User => {
   const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    if (!user.name) {
+    if (!user.username) {
       dispatch(getUser('tomburgs'));
     }
   }, []);
