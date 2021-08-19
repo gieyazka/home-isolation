@@ -173,7 +173,7 @@ const Location = () => {
               variant="contained"
               color="primary"
             >
-             {userState && userState.location.hospital ? 'Update' : 'Submit' } 
+             {userState && userState.location && userState.location.hospital ? 'Update' : 'Submit' } 
             </Button>
           </div>
         </div>
