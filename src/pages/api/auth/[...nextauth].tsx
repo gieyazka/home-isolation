@@ -18,7 +18,7 @@ export default NextAuth({
    },
       async authorize(credentials, req) {
      
-        const url = 'https://60f7b1409cdca00017454f51.mockapi.io/api/v1/users';
+     
         const loginApi = "https://ess.aapico.com/auth/local";
         const response =  await axios.post(loginApi,{
           identifier :  credentials.username.toUpperCase(),
@@ -84,7 +84,7 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
     async signIn(user, account, profile) { 
-      console.log(user, account, profile);
+      // console.log(user, account, profile);
       
       return true },
     // async redirect(url, baseUrl) { return baseUrl },
@@ -97,6 +97,9 @@ export default NextAuth({
         token.accessToken = account.accessToken
       }
       return token
+    },
+    async redirect(url, baseUrl) {
+      return 'https://covid.powermap.live'
     }
   },
 
