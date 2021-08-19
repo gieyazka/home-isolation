@@ -28,7 +28,7 @@ export default function Landing(): JSX.Element {
       >
         <div
           // style={{ paddingTop: "25vh" }}
-          className={` text-center  w-screen `}
+          className={`${imgsize} text-center  w-screen `}
         >
           <img src='/assets/covid.jpg' className={`${imgsize} opacity-40 absolute  w-full z-0 object-cover`} />
           <div className=' text-black z-10 absolute translate-x-2/4 translate-y-2/4 w-screen text-center' style={{top : '25vh'}}>
@@ -36,7 +36,7 @@ export default function Landing(): JSX.Element {
          <br /> <text className=" text-2xl  mt-auto mb-auto">SOS Center</text>
          </div>
         </div>
-        <div className={imgsize} style={{backgroundColor : '#ECECED'}}>
+        <div className="  h-2/4" style={{backgroundColor : '#ECECED'}}>
           <div className="flex flex-wrap justify-around pt-4 ">
             <Link href="/location">
               <div
