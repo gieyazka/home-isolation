@@ -18,6 +18,10 @@
     font-size:   20vw !important;;
   }
 }
+.sizetop{
+  height: calc(50% - var(--header-height));
+  
+}
 .imgsize{
   margin-top:  var(--header-height);
   height: calc(50% - var(--header-height));
