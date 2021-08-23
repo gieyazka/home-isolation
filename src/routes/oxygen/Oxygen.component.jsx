@@ -122,6 +122,7 @@ const Oxygen = () => {
     }
   }, [days]);
   const onSubmit = async (data) => {
+ 
     let type,
       hour = moment().hour();
     if (hour >= 3 && hour < 11) {
@@ -132,7 +133,7 @@ const Oxygen = () => {
       type = "evening";
     }
 
-    if (!data.PR || !data.SPO) {
+    if (!data.PR || !data.SPO || !data.status) {
       Swal.fire({
         icon: "info",
         title: "กรุณากรอกข้อมูลให้ครบ",
@@ -219,12 +220,10 @@ const Oxygen = () => {
   const controlDays = (type) => {
     if (type === "delete") {
       if (days >= 0 && days < 7) {
-    
         setDays(days + 1);
       }
     } else {
       if (days > 0) {
-        
         setDays(days - 1);
       }
     }
@@ -241,58 +240,30 @@ const Oxygen = () => {
         }}
       >
         <div
-        className='flex items-center justify-center w-screen text-center'
+          className="flex items-center justify-center w-screen text-center"
           style={{
-            
             backgroundColor: "#ECECED",
             borderColor: "#ECECED",
             zIndex: -1,
             height: "15%",
-            
           }}
         >
-            <ArrowBackIosIcon style={days === 7 ? {color : '#dddddd'}: {}} onClick={() => controlDays("delete")} />{" "}
+          <ArrowBackIosIcon
+            style={days === 7 ? { color: "#dddddd" } : {}}
+            onClick={() => controlDays("delete")}
+          />{" "}
           {moment().subtract(days, "days").format("DD/MM/YYYY")}{" "}
-          <ArrowForwardIosIcon  style={days === 0 ? {color : '#dddddd'} : {}}  onClick={() => controlDays("add")} />
+          <ArrowForwardIosIcon
+            style={days === 0 ? { color: "#dddddd" } : {}}
+            onClick={() => controlDays("add")}
+          />
         </div>
         <div
           style={{ marginTop: -1, backgroundColor: "#ECECED", zIndex: 99 }}
           className="  text-center  w-screen "
         >
-        
           <Bar className="px-2" data={detail && detail} options={options} />
-          {/* <div
-            className="  w-11/12 h-full mx-auto rounded-md flex  flex-col "
-            style={{ backgroundColor: "#F6F6F6" }}
-          >
-            <div
-              className="mt-2 mx-auto rounded-full h-32 w-32 border-4 flex flex-col items-center justify-center"
-              style={{ borderColor: "#199CA6" }}
-            >
-              <text className="text-3xl">{detail && detail.spo} %</text>
-              <br />
-              <text className="text-xl">SPO2</text>
-            </div>
-            <div className=" mx-6 flex justify-between">
-              {/* <div
-                className=" rounded-full h-32 w-32 z-50 border-4 flex flex-col items-center justify-center"
-                style={{ borderColor: "#199CA6" }}
-              >
-                <text className="text-3xl">{detail && detail.pi}</text>
-                <br />
-                <text className="text-xl">PI</text>
-              </div> *
-              <div
-                className=" rounded-full h-32 w-32 z-50 border-4 flex flex-col items-center justify-center"
-                style={{ borderColor: "#199CA6" }}
-              >
-                <text className="text-3xl">{detail && detail.pr}</text>
-                <br />
-                <text className="text-xl">PR</text>
-              </div>
-            </div>
-            <text className="pt-4">PULSE OXEMETER RESULTS</text>
-          </div> */}
+       
         </div>
         <div
           className={`${componet}   w-12/12`}
@@ -319,18 +290,7 @@ const Oxygen = () => {
                     {...register("SPO")}
                   />
                 </div>
-                {/* <div className='mt-2' >
-                <label className=" whitespace-nowrap mt-2">
-                  {" "}
-                  ค่าการไหลเวียนของเลือด (PI) = &nbsp;{" "}
-                </label>
-
-                <input
-                  className=" w-1/4  "
-                  type='number'
-                  {...register("PI")}
-                />
-                </div> */}
+           
                 <div className="mt-2">
                   <label className=" whitespace-nowrap ">
                     {" "}
@@ -340,6 +300,26 @@ const Oxygen = () => {
                     className=" w-1/4  "
                     type="number"
                     {...register("PR")}
+                  />
+                </div>
+                <div className="mt-2">
+                  <label >
+                    {" "}
+                    ระดับความรุนแรง (severity level){" "}
+                  </label>
+      
+                  <input type="radio" name="drivers" value='ไม่รุนแรง'  {...register("status")} />
+                  ไม่รุนแรง <br />
+                  <input type="radio" name="drivers" value='รุนแรงน้อย'  {...register("status")} />
+                  รุนแรงน้อย  <br />
+                  <input type="radio" name="drivers" value='รุนแรงมาก'  {...register("status")} />
+                  รุนแรงมาก
+                </div>
+                <div className=" whitespace-nowrap ">
+                  <label> อาการ </label>
+                  <input
+                    
+                    {...register("SPO")}
                   />
                 </div>
                 <div className="text-center">
