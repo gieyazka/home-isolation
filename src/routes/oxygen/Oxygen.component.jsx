@@ -122,7 +122,6 @@ const Oxygen = () => {
     }
   }, [days]);
   const onSubmit = async (data) => {
- 
     let type,
       hour = moment().hour();
     if (hour >= 3 && hour < 11) {
@@ -263,24 +262,16 @@ const Oxygen = () => {
           className="  text-center  w-screen "
         >
           <Bar className="px-2" data={detail && detail} options={options} />
-       
         </div>
         <div
           className={`${componet}   w-12/12`}
           style={{ marginTop: -1, backgroundColor: "#ECECED" }}
         >
           {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
-          <div className="  w-11/12 h-full mx-auto rounded-md flex items-center ">
-            <div className="flex flex-col">
-              {/* <LocationOnIcon className={iconMenu} /> */}
-              <img
-                className={`mx-auto h-25vw md:h-8vw p-2  `}
-                src="/assets/oxygen_satuation.svg"
-              />
-              {/* <p>oxygen Satuation</p> */}
-            </div>
-            <div className={`${center} flex-col`}>
-              <div>ค่าผลลัพธ์</div>
+          <div className="  w-full h-full mx-auto rounded-md flex items-center justify-center ">
+          
+            <div className={`${center}`}>
+          
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className=" whitespace-nowrap ">
                   <label> ระดับออกซิเจนในเลือด (SpO2) = </label>
@@ -290,7 +281,7 @@ const Oxygen = () => {
                     {...register("SPO")}
                   />
                 </div>
-           
+
                 <div className="mt-2">
                   <label className=" whitespace-nowrap ">
                     {" "}
@@ -303,24 +294,40 @@ const Oxygen = () => {
                   />
                 </div>
                 <div className="mt-2">
-                  <label >
-                    {" "}
-                    ระดับความรุนแรง (severity level){" "}
-                  </label>
-      
-                  <input type="radio" name="drivers" value='ไม่รุนแรง'  {...register("status")} />
-                  ไม่รุนแรง <br />
-                  <input type="radio" name="drivers" value='รุนแรงน้อย'  {...register("status")} />
-                  รุนแรงน้อย  <br />
-                  <input type="radio" name="drivers" value='รุนแรงมาก'  {...register("status")} />
-                  รุนแรงมาก
+                  <label> ระดับความรุนแรง (severity level) </label>
+                  <div className="flex justify-between">
+                    <input
+                      type="radio"
+                      name="drivers"
+                      value="ไม่รุนแรง"
+                      {...register("status")}
+                    />
+                    ไม่รุนแรง <br />
+                    <input
+                      type="radio"
+                      name="drivers"
+                      value="รุนแรงน้อย"
+                      {...register("status")}
+                    />
+                    รุนแรงน้อย <br />
+                    <input
+                      type="radio"
+                      name="drivers"
+                      value="รุนแรงมาก"
+                      {...register("status")}
+                    />
+                    รุนแรงมาก
+                  </div>
                 </div>
-                <div className=" whitespace-nowrap ">
-                  <label> อาการ </label>
-                  <input
-                    
-                    {...register("SPO")}
-                  />
+                
+                <div className=" whitespace-nowrap">
+                <label> อาการ </label>
+                  <div className='flex-col'>
+
+              
+                  <textarea className='w-full' placeholder='อาการ' {...register("remark")} />
+                  </div>
+
                 </div>
                 <div className="text-center">
                   <button
