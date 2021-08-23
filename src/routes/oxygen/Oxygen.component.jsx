@@ -32,6 +32,7 @@ const Oxygen = () => {
   const [dataOxygen, setData] = React.useState(null);
   const [days, setDays] = React.useState(0);
   let data = null;
+  console.log(detail);
   React.useEffect(async () => {
     const loadingData = async () => {
       await axios
@@ -151,6 +152,7 @@ const Oxygen = () => {
             }&type=${type}&date=${new moment().format("YYYYMMDD")}`
           )
           .then(async (res) => {
+            console.log(res.data[0]);
             if (res.data[0]) {
               // console.log(r.data[0]);
               await axios
@@ -158,6 +160,8 @@ const Oxygen = () => {
                   spo: data.SPO,
                   // pi: data.PI,
                   pr: data.PR,
+                  status: data.status,
+                  remark: data.remark,
                   location: r.data[0].location,
                   image: r.data[0].avatar
                     ? `https://ess.aapico.com${r.data[0].avatar.url} `
@@ -165,7 +169,24 @@ const Oxygen = () => {
                 })
 
                 .then((d) => {
-                  setDetail(d.data);
+                  if(d.data.type==='morning'){
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[0] = d.data.spo
+                    dataDetail[1].data[0] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+                  }else if(d.data.type === 'afternoon'){
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[1] = d.data.spo
+                    dataDetail[1].data[1] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+
+                  }else{
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[2] = d.data.spo
+                    dataDetail[1].data[2] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+
+                  }
                   Swal.fire({
                     icon: "success",
                     title: "แก้ไขข้อมูลสำเร็จ",
@@ -176,6 +197,7 @@ const Oxygen = () => {
                   setValue("SPO", null, { shouldValidate: true });
                 });
             } else {
+
               await axios
                 .post(`https://ess.aapico.com/oxygens`, {
                   date: new moment().format("YYYYMMDD"),
@@ -183,6 +205,8 @@ const Oxygen = () => {
                   type: type,
                   // pi: data.PI,
                   pr: data.PR,
+                  status: data.status,
+                  remark: data.remark,
                   username: r.data[0].username,
                   location: r.data[0].location,
                   image: r.data[0].avatar
@@ -190,7 +214,26 @@ const Oxygen = () => {
                     : null,
                 })
                 .then((d) => {
-                  setDetail(d.data);
+                  if(d.data.type==='morning'){
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[0] = d.data.spo
+                    dataDetail[1].data[0] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+                  }else if(d.data.type === 'afternoon'){
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[1] = d.data.spo
+                    dataDetail[1].data[1] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+
+                  }else{
+                    let dataDetail = detail.datasets
+                    dataDetail[0].data[2] = d.data.spo
+                    dataDetail[1].data[2] =  d.data.pr
+                    setDetail({...detail , datasets : dataDetail})
+
+                  }
+                  // setDetail(d.data);
+                  console.log(d.data);
                   Swal.fire({
                     icon: "success",
                     title: "บันทึกข้อมูลสำเร็จ",
