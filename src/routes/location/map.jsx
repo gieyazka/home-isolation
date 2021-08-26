@@ -7,7 +7,7 @@ const Map = ({lat,lon}) => {
   return (
     <MapContainer
     center={[lat,lon]}
-    zoom={13}
+    zoom={16}
     scrollWheelZoom={false}
     style={{ height: "100%", width: "100%" }}
   >
@@ -17,7 +17,7 @@ const Map = ({lat,lon}) => {
     />
     <Marker position={[lat,lon]}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        Your location
       </Popup>
     </Marker>
   </MapContainer>
