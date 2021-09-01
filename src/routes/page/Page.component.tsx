@@ -48,7 +48,7 @@ export const addDescriptionTag = (description: string): JSX.Element => {
 
 export default function Page(props: PageProps): JSX.Element {
   const { isLanding } = props;
-  const { title = '', description = '' } = usePageDetails();
+  const { title = 'Covid Home Isolation', description = '' } = usePageDetails();
   const { content = '' } = usePageData();
 
   const classNames = injectClassNames(page, [pageLanding, isLanding]);
@@ -56,7 +56,7 @@ export default function Page(props: PageProps): JSX.Element {
   return (
     <>
       <Head>
-        { addTitleTags(title) }
+        { addTitleTags( 'Covid Home Isolation') }
         { addDescriptionTag(description) }
         <meta name="robots" content="INDEX,FOLLOW" />
       </Head>

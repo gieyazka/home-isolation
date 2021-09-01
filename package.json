@@ -1,6 +1,6 @@
 {
-  "name": "Covid-Home-Isolotion",
-  "description": "Covid-Home-Isolotion",
+  "name": "home-isolation",
+  "description": "Covid Home Isolotion",
   "version": "0.3.0",
   "license": "MIT",
   "dependencies": {
