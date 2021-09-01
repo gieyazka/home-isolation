@@ -21,7 +21,7 @@ const links = [
 
 export default function Items() {
   const { pathname } = useRouter();
-  console.log(window.location);
+
   return (
     <ul className={ items }>
       { links.map(({ name, url, alias,icon }) => (

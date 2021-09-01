@@ -47,7 +47,6 @@ export default memo(
         };
       }
     }, []);
-
     return (
       <>
         <div  className={ offline }>
@@ -61,7 +60,7 @@ export default memo(
           <nav>
             <div className={ headerControls }>
               <div style={{fontFamily : 'Bai jamjuree'}}  className='flex flex-col items-center'>
-              <img className=' rounded-full h-11 w-11 '      src={session?.user?.image || ""} />
+              <img className=' rounded-full h-11 w-11 '      src={session?.user?.picture || ""} />
               <div className='mt-1 text-white'>{session?.user?.name}</div>
               </div>
               <div className='flex flex-row justify-end items-end '>

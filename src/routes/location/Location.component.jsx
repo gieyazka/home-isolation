@@ -36,10 +36,16 @@ const Location = () => {
   const [hospitalState, setHospitalState] = React.useState();
   const [userState, setUserState] = React.useState();
   const [selectHospital, setSelectHospital] = React.useState(null);
+    console.log(session);
+
   const updateLocation = async () => {
-    // console.log(session.user.name);
     await axios
-      .get(`https://ess.aapico.com/users?username=${session.user.name}`)
+      .get(`https://ess.aapico.com/users?username=${session.user.name}`, {
+        headers: {
+          Authorization:
+            "Bearer " + session.user.jwt,
+        },
+      })
       .then(async (r) => {
         // console.log(r.data[0].id);
         await axios
@@ -48,6 +54,11 @@ const Location = () => {
               address: `${locationState.tambon_e},${locationState.amphoe_e},${locationState.province_e},${locationState.postcode}`,
               coordinates: { lat: state.latitude, lon: state.longitude },
               hospital: selectHospital,
+            },
+          }, {
+            headers: {
+              Authorization:
+                "Bearer " + session.user.jwt,
             },
           })
           .then((r) => 
@@ -72,7 +83,12 @@ const Location = () => {
     // console.log(state);
     const getUser = async ()=>{
       return await axios
-      .get(`https://ess.aapico.com/users?username=${session.user.name}`).then(r=>r.data[0])
+      .get(`https://ess.aapico.com/users?username=${session.user.name}`, {
+          headers: {
+            Authorization:
+              "Bearer " + JSON.parse(sessionStorage.getItem("user")).jwt,
+          },
+        }).then(r=>r.data[0])
     }
     const getHospital = async () => {
       return await axios
@@ -103,7 +119,7 @@ const Location = () => {
       }
     }
   }, [state.loading]);
-  console.log(userState);
+  // console.log(userState);
   return (
     <div className={wrapper}>
       <div

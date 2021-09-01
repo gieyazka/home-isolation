@@ -1,6 +1,6 @@
-import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
-import axios from "axios"
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+import axios from "axios";
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
@@ -8,34 +8,35 @@ export default NextAuth({
   providers: [
     Providers.Credentials({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: 'CustomAuth',
+      name: "CustomAuth",
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
-   credentials : {
-    username : {label : 'identifier'},
-    password : {label : 'password'},
-   },
+      credentials: {
+        username: { label: "identifier" },
+        password: { label: "password" },
+      },
       async authorize(credentials, req) {
-     
-     
         const loginApi = "https://ess.aapico.com/auth/local";
-        const response =  await axios.post(loginApi,{
-          identifier :  credentials.username.toUpperCase(),
-          password : credentials.password
-        })
-        if(response){
-         
-          return { id: response.data.user.id, name: response.data.user.username, email: response.data.user.email , image :  "https://ess.aapico.com"+response.data.user.avatar.url }
- 
-        }else{
-          throw '/login'   
+        const response = await axios.post(loginApi, {
+          identifier: credentials.username.toUpperCase(),
+          password: credentials.password,
+        });
+        if (response) {
+          // console.log(response);
+
+          return {
+            id: response.data.user.id,
+            name: response.data.user.username,
+            email: response.data.user.email,
+            image: "https://ess.aapico.com" + response.data.user.avatar.url,
+            jwt: response.data.jwt,
+          };
+        } else {
+          throw "/login";
         }
-   
-      }
-    })
-   
-   
+      },
+    }),
   ],
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -72,9 +73,9 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    signIn: '/login',  // Displays signin buttons
-    signOut: '/logout', // Displays form with sign out button
-    error: '/login', // Error code passed in query string as ?error=
+    signIn: "/login", // Displays signin buttons
+    signOut: "/logout", // Displays form with sign out button
+    error: "/login", // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
     // newUser: null // If set, new users will be directed here on first sign in
   },
@@ -83,24 +84,27 @@ export default NextAuth({
   // when an action is performed.
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
-    async signIn(user, account, profile) { 
-      // console.log(user, account, profile);
-      
-      return true },
+    async signIn(user, account, profile) {
+      return true;
+    },
     // async redirect(url, baseUrl) { return baseUrl },
-    // async session(session, user) { return session },
+    async session(session, user) {
+      session.user = user;
+      return session;
+    },
     async jwt(token, user, account, profile, isNewUser) {
-      // console.log(104,token, user, account, profile, isNewUser);
-      
       // Add access_token to the token right after signin
       if (account?.accessToken) {
-        token.accessToken = account.accessToken
+        token.accessToken = account.accessToken;
       }
-      return token
+      if (user !== undefined) {
+        token.jwt = user?.jwt;
+      }
+      return token;
     },
     async redirect(url, baseUrl) {
-      return 'https://covid.powermap.live'
-    }
+      return "https://covid.powermap.live";
+    },
   },
 
   // Events are useful for logging
@@ -109,8 +113,8 @@ export default NextAuth({
 
   // You can set the theme to 'light', 'dark' or use 'auto' to default to the
   // whatever prefers-color-scheme is set to in the browser. Default is 'auto'
-  theme: 'light',
+  theme: "light",
 
   // Enable debug messages in the console if you are having problems
   debug: false,
-})
+});

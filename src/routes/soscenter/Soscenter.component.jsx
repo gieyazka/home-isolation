@@ -67,13 +67,23 @@ const Soscenter = () => {
     }
 
     await axios
-      .get(`https://ess.aapico.com/users?username=${session.user.name}`)
+      .get(`https://ess.aapico.com/users?username=${session.user.name}`, {
+        headers: {
+          Authorization:
+            "Bearer " + session.user.jwt,
+        },
+      })
       .then(async (userData) => {
         await axios
           .get(
             `https://ess.aapico.com/homeisolations?username=${
               session.user.name
-            }&date=${new moment().format("YYYYMMDD")}`
+            }&date=${new moment().format("YYYYMMDD")}`, {
+              headers: {
+                Authorization:
+                  "Bearer " + session.user.jwt,
+              },
+            }
           )
           .then(async (r) => {
             if (r.data[0]) {
@@ -89,6 +99,11 @@ const Soscenter = () => {
                   image: userData.data[0].avatar
                     ? `https://ess.aapico.com${userData.data[0].avatar.url} `
                     : null,
+                }, {
+                  headers: {
+                    Authorization:
+                      "Bearer " + session.user.jwt,
+                  },
                 })
                 .then((r) => {
                   Swal.fire({
@@ -113,6 +128,11 @@ const Soscenter = () => {
                   image: userData.data[0].avatar
                     ? `https://ess.aapico.com${userData.data[0].avatar.url} `
                     : null,
+                }, {
+                  headers: {
+                    Authorization:
+                      "Bearer " + session.user.jwt,
+                  },
                 })
                 .then((res) => {
                   Swal.fire({
@@ -130,7 +150,12 @@ const Soscenter = () => {
     const getData = async () => {
       await axios
         .get(
-          `https://ess.aapico.com/homeisolations?username=${session.user.name}&_sort=date:DESC`
+          `https://ess.aapico.com/homeisolations?username=${session.user.name}&_sort=date:DESC`, {
+            headers: {
+              Authorization:
+                "Bearer " + session.user.jwt,
+            },
+          }
         )
         .then((r) => setRequest(r.data));
     };
@@ -156,6 +181,11 @@ const Soscenter = () => {
     await axios
       .put(`https://ess.aapico.com/homeisolations/${id}`, {
         receive: true,
+      }, {
+        headers: {
+          Authorization:
+            "Bearer " + session.user.jwt,
+        },
       })
       .then(async (data) => {
         console.log(data.data);

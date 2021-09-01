@@ -32,14 +32,19 @@ const Oxygen = () => {
   const [dataOxygen, setData] = React.useState(null);
   const [days, setDays] = React.useState(0);
   let data = null;
-  console.log(detail);
+ 
   React.useEffect(async () => {
     const loadingData = async () => {
       await axios
         .get(
           `https://ess.aapico.com/oxygens?username=${
             session.user.name
-          }&date_gte=${new moment().subtract(6, "days").format("YYYYMMDD")}`
+          }&date_gte=${new moment().subtract(6, "days").format("YYYYMMDD")}`, {
+            headers: {
+              Authorization:
+                "Bearer " + session.user.jwt,
+            },
+          }
         )
         .then((r) => {
           // setDetail(r.data)
@@ -143,13 +148,23 @@ const Oxygen = () => {
       return null;
     }
     await axios
-      .get(`https://ess.aapico.com/users?username=${session.user.name}`)
+      .get(`https://ess.aapico.com/users?username=${session.user.name}`, {
+        headers: {
+          Authorization:
+            "Bearer " + session.user.jwt,
+        },
+      })
       .then(async (r) => {
         await axios
           .get(
             `https://ess.aapico.com/oxygens?username=${
               r.data[0].username
-            }&type=${type}&date=${new moment().format("YYYYMMDD")}`
+            }&type=${type}&date=${new moment().format("YYYYMMDD")}`, {
+              headers: {
+                Authorization:
+                  "Bearer " + session.user.jwt,
+              },
+            }
           )
           .then(async (res) => {
             console.log(res.data[0]);
@@ -166,6 +181,11 @@ const Oxygen = () => {
                   image: r.data[0].avatar
                     ? `https://ess.aapico.com${r.data[0].avatar.url} `
                     : null,
+                }, {
+                  headers: {
+                    Authorization:
+                      "Bearer " + session.user.jwt,
+                  },
                 })
 
                 .then((d) => {
@@ -212,6 +232,11 @@ const Oxygen = () => {
                   image: r.data[0].avatar
                     ? `https://ess.aapico.com${r.data[0].avatar.url} `
                     : null,
+                }, {
+                  headers: {
+                    Authorization:
+                      "Bearer " + session.user.jwt,
+                  },
                 })
                 .then((d) => {
                   if(d.data.type==='morning'){
