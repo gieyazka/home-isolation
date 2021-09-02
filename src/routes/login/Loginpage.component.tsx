@@ -116,7 +116,7 @@ const Loginpage = () => {
 
                 </div>
                 <div className='w-full text-center'>
-                    <button    className='bg-white text-lg  px-8 py-2 mt-4 rounded-lg mr-4 ml-auto'>Register</button>
+                    <button  onClick={() => { window.open('https://ess.aapico.com/#/register') }}   className='bg-white text-lg  px-8 py-2 mt-4 rounded-lg mr-4 ml-auto'>Register</button>
                     <button type="submit" className='bg-white  text-lg px-9 py-2 mt-4 rounded-lg mr-auto'>Login</button>
                 </div>
             </form>
